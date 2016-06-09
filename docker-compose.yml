@@ -1,0 +1,17 @@
+version: "2"
+services:
+  rsync:
+    build: image/
+    image: kyleondy/rsync
+    ports:
+      - "2222:22"
+    volumes:
+      - ~/.ssh/id_rsa.pub:/tmp/id_rsa.pub:ro
+      - /tmp/data:/data
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external:
+      name: proxy_default
